@@ -1,0 +1,130 @@
+\def\EpinTwoA{-0.665604245118434}
+\def\EpinThreeA{-0.665076194152695}
+\def\EpinTwoB{-3.348164768205791}
+\def\EpinThreeB{-3.335110519228936}
+
+\begin{tikzpicture}
+    \begin{scope}[yshift=0.5\textwidth]
+        \begin{axis}[%
+        width=0.75\textwidth,
+        height=0.464\textwidth,
+        title={(a) $g_m=2g_c$},
+        title style={yshift=-0.2cm},
+        xmin=0,
+        xmax=15,
+        xlabel={$g$ (units of $g_c$)},
+        ymin=-6,
+        ymax=0,
+        ylabel={$(E-E_\mathrm{BEC})/N$ (units of $mg_c^2/\hbar^2$)},
+        legend style={at={(axis cs:0.5,-6)}, legend cell align=left,anchor= south west, draw=none,fill=none}
+        ]
+            \addplot [color=mycolor1,mark size=0.4pt, mark=*, mark options={solid, mycolor1},restrict x to domain=0:15] table[x=gTG,y=E_N2_num] {fermionization_gMIX2_gTGramp_energy.dat};
+            \addlegendentry{$N=2$};
+            \addplot [color=mycolor4,mark size=0.4pt, mark=*, mark options={solid, mycolor4},restrict x to domain=0:15] table[x=gTG,y=E_N3_num] {fermionization_gMIX2_gTGramp_energy.dat};
+            \addlegendentry{$N=3$};
+            \addplot [color=black,dash dot,forget plot,restrict x to domain=0:15] table[x=gTG,y=E_N2_ana] {fermionization_gMIX2_gTGramp_energy.dat};
+            \addplot [color=black,dash dot,forget plot,restrict x to domain=0:15] table[x=gTG,y=E_N3_ana] {fermionization_gMIX2_gTGramp_energy.dat};
+            \draw[dashed] (axis cs:0,\EpinTwoA) -- (axis cs:15,\EpinTwoA);
+            \coordinate (inset1) at (axis cs:6,-5.2);
+            \coordinate (inset2) at (axis cs:14.6,-5.2);
+        \end{axis}
+
+        \begin{axis}[%
+        width=0.27\textwidth,
+        height=0.27\textwidth,
+        at={(inset1)},
+        anchor=south west,
+        xmin=13.5,
+        xmax=15.5,
+        xtick={14,15},
+        ymin=-0.669,
+        ymax=-0.662,
+        ytick={-0.671,-0.668,-0.665,-0.662},
+        y tick label style={
+            /pgf/number format/.cd,
+                fixed,
+                fixed zerofill,
+                precision=3,
+            /tikz/.cd
+        }
+        ]
+            \addplot [color=mycolor4,mark size=0.4pt, mark=*, mark options={solid, mycolor4},forget plot,restrict x to domain=13.5:15.5] table[x=gTG,y=E_N3_num] {fermionization_gMIX2_gTGramp_energy.dat};
+            \addplot [thick,dotted,color=mycolor4,forget plot,restrict x to domain=14.2:15.5] table[x=gTG,y=E_N3_sf] {fermionization_gMIX2_gTGramp_energy.dat};
+            \draw[dashed] (axis cs:13.5,\EpinThreeA) -- (axis cs:15.5,\EpinThreeA);
+        \end{axis}
+
+        \begin{axis}[%
+        width=0.27\textwidth,
+        height=0.27\textwidth,
+        at={(inset2)},
+        anchor=south east,
+        xmin=22,
+        xmax=32,
+        xtick={23,27,31},
+        ymin=-0.669,
+        ymax=-0.662,
+        yticklabels=\empty
+        ]
+            \addplot [color=mycolor1,mark size=0.4pt, mark=*, mark options={solid, mycolor1},forget plot,restrict x to domain=22:32] table[x=gTG,y=E_N2_num] {fermionization_gMIX2_gTGramp_energy.dat};
+            \addplot [thick,dotted,color=mycolor1,forget plot,restrict x to domain=25:32] table[x=gTG,y=E_N2_sf] {fermionization_gMIX2_gTGramp_energy.dat};
+            \draw[dashed] (axis cs:22,\EpinTwoA) -- (axis cs:32,\EpinTwoA);
+        \end{axis}
+    \end{scope}
+
+    \begin{axis}[%
+    width=0.75\textwidth,
+    height=0.464\textwidth,
+    title={(b) $g_m=3g_c$},
+    title style={yshift=-0.2cm},
+    xmin=0,
+    xmax=20,
+    xlabel={$g$ (units of $g_c$)},
+    ymin=-30,
+    ymax=0,
+    ylabel={$(E-E_\mathrm{BEC})/N$ (units of $mg_c^2/\hbar^2$)},
+    legend style={at={(axis cs:1,-30)}, legend cell align=left,anchor= south west, draw=none,fill=none}
+    ]
+        \addplot [color=mycolor1,mark size=0.4pt, mark=*, mark options={solid, mycolor1},restrict x to domain=0:20] table[x=gTG,y=E_N2_num] {fermionization_gMIX3_gTGramp_energy.dat};
+        \addlegendentry{$N=2$};
+        \addplot [color=mycolor4,mark size=0.4pt, mark=*, mark options={solid, mycolor4},restrict x to domain=0:20] table[x=gTG,y=E_N3_num] {fermionization_gMIX3_gTGramp_energy.dat};
+        \addlegendentry{$N=3$};
+        \addplot [color=black,dash dot,forget plot,restrict x to domain=0:20] table[x=gTG,y=E_N2_ana] {fermionization_gMIX3_gTGramp_energy.dat};
+        \addplot [color=black,dash dot,forget plot,restrict x to domain=0:20] table[x=gTG,y=E_N3_ana] {fermionization_gMIX3_gTGramp_energy.dat};
+        \draw[dashed] (axis cs:0,\EpinTwoB) -- (axis cs:20,\EpinTwoB);
+        \coordinate (inset1) at (axis cs:8,-26);
+        \coordinate (inset2) at (axis cs:19.5,-26);
+    \end{axis}
+
+    \begin{axis}[%
+    width=0.27\textwidth,
+    height=0.27\textwidth,
+    at={(inset1)},
+    anchor=south west,
+    xmin=15.9,
+    xmax=16.4,
+    xtick={16,16.3},
+    ymin=-3.36,
+    ymax=-3.32,
+    ]
+        \addplot [color=mycolor4,mark size=0.4pt, mark=*, mark options={solid, mycolor4},forget plot,restrict x to domain=12:20] table[x=gTG,y=E_N3_num] {fermionization_gMIX3_gTGramp_energy.dat};
+        \addplot [thick,dotted,color=mycolor4,forget plot,restrict x to domain=16.2:20] table[x=gTG,y=E_N3_sf] {fermionization_gMIX3_gTGramp_energy.dat};
+        \draw[dashed] (axis cs:12,\EpinThreeB) -- (axis cs:20,\EpinThreeB);
+    \end{axis}
+
+    \begin{axis}[%
+    width=0.27\textwidth,
+    height=0.27\textwidth,
+    at={(inset2)},
+    anchor=south east,
+    xmin=42,
+    xmax=50,
+    xtick={43,46,49},
+    ymin=-3.36,
+    ymax=-3.32,
+    yticklabels=\empty
+    ]
+        \addplot [color=mycolor1,mark size=0.4pt, mark=*, mark options={solid, mycolor1},forget plot,restrict x to domain=40:50] table[x=gTG,y=E_N2_num] {fermionization_gMIX3_gTGramp_energy.dat};
+        \addplot [thick,dotted,color=mycolor1,forget plot,restrict x to domain=40:50] table[x=gTG,y=E_N2_sf] {fermionization_gMIX3_gTGramp_energy.dat};
+        \draw[dashed] (axis cs:40,\EpinTwoB) -- (axis cs:50,\EpinTwoB);
+    \end{axis}
+\end{tikzpicture}

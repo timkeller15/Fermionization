@@ -1,0 +1,23 @@
+\begin{tikzpicture}
+    \begin{axis}[%
+    width=0.75\textwidth, 
+    height=0.4\textwidth, 
+    xmin=0,
+    xmax=50,
+    xlabel={$g$ (units of $g_c$)},
+    ymin=0,
+    ymax=1,
+    ylabel={Coherence},
+    legend style={at={(axis cs:25,0.05)}, legend cell align=left,anchor= south, draw=none,fill=none, legend columns=2,/tikz/every even column/.append style={column sep=5pt}}
+    ]
+        \node at (axis cs:5.5,0.72) {superfluid};
+        \node at (axis cs:40,0.25) {pinned};
+        \node[below left=5pt] at (axis cs:50,1) {$g_m=2g_c$};
+        \addplot [color=mycolor1, mark size=0.6pt, mark=*, mark options={solid, mycolor1}] table[x=gTG,y=coherence_N2]{fermionization_gMIX2_gTGramp_coherence.dat};
+        \addlegendentry{$N=2$};
+        \addplot [color=mycolor4, mark size=0.6pt, mark=*, mark options={solid, mycolor4}] table[x=gTG,y=coherence_N3]{fermionization_gMIX2_gTGramp_coherence.dat};
+        \addlegendentry{$N=3$};
+        \node[above=5pt] at (axis cs:38,0.5) {$C=\frac{1}{2}$};
+        \node[above=5pt] at (axis cs:20,0.33) {$C=\frac{1}{3}$};
+    \end{axis}
+\end{tikzpicture}

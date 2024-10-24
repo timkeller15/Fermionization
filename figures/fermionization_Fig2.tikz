@@ -1,0 +1,114 @@
+\def\PosTwoD{0.703125}
+\def\PeakCritTwoD{0.968089902981123}
+\def\PeakSFTwoD{3.947605194118394}
+\def\PosThreeD{1.0546875}
+\def\PeakCritThreeD{0.966755551857499}
+\def\PeakSFThreeD{8.705426361963838}
+
+\begin{tikzpicture}
+    \begin{axis}[%
+    width=0.5\textwidth, 
+    height=0.309\textwidth, 
+    enlargelimits=false,
+    axis on top,
+    xmin=0,
+    xmax=30,
+    xtick={0,6,12,18,24,30}, 
+    xlabel={$g$ (units of $g_c$)},
+    ymin=-3, 
+    ymax=3,  
+    ylabel={$x$ (units of $\hbar^2/mg_c$)},
+    y label style={yshift=.5em},
+    colormap name = smoothcoolwarm,
+    point meta min = 0,
+    point meta max = 1,
+    colorbar horizontal,
+    colorbar style={at={(0.56,1.4)},anchor=north west}
+    ]
+        \addplot graphics[xmin=0,xmax=30,ymin=-3,ymax=3] {data/fermionization_N2_gMIX2_density.png};
+        \coordinate[below=35pt] (subplot) at (current axis.south west);
+        \coordinate (origin1) at (axis cs:0,0);
+        \coordinate (origin2) at (axis cs:24.9,\PosTwoD);
+        \node[white,anchor=west] at (axis cs:0,2.4) {(a) $N=2$};
+        \node[white,anchor=west] at (axis cs:0,-2.4) {$g_m=2g_c$};
+    \end{axis}
+
+    \begin{axis}[%
+    at={(subplot)},
+    anchor=north west,
+    width=0.5\textwidth, 
+    height=0.25\textwidth, 
+    xmin=-4,
+    xmax=4,
+    xlabel={$x$ (units of $\hbar^2/mg_c$)},
+    ymode=log,
+    ymin=1e-3,
+    ymax=10,
+    yminorticks=true,
+    ytick={1e-3,1e-2,1e-1,1,10},
+    ylabel={$\rho(x)$ (units of $mg_c/\hbar^2$)}
+    ]
+        \addplot [color=mycolor4,line width=1.0pt] table[x=x,y=rho_sf]{fermionization_N2_gMIX2_gTGramp_densities.dat};
+        \addplot [dash dot,line width=1.0pt,forget plot] table[x=x,y=rho_sf_ana]{fermionization_N2_gMIX2_gTGramp_densities.dat};
+        \addplot [color=mycolor3,line width=1.0pt] table[x=x,y=rho_pin]{fermionization_N2_gMIX2_gTGramp_densities.dat};
+        \addplot [color=mycolor2,line width=1.0pt] table[x=x,y=rho_crit]{fermionization_N2_gMIX2_gTGramp_densities.dat};
+        \coordinate (dest1) at (axis cs:0,\PeakSFTwoD);
+        \coordinate (dest2) at (axis cs:\PosTwoD,\PeakCritTwoD);
+        \node at (axis cs: -3.5,3) {(c)};
+    \end{axis}
+
+    \draw[thick,dotted,gray] (origin1) -- (dest1);
+    \draw[thick,dotted,gray] (origin2) -- (dest2);
+
+    \begin{scope}[xshift=0.45\textwidth]
+        \begin{axis}[%
+        width=0.5\textwidth, 
+        height=0.309\textwidth, 
+        enlargelimits=false,
+        axis on top,
+        xmin=0,
+        xmax=18, 
+        xlabel={$g$ (units of $g_c$)},
+        ymin=-5, 
+        ymax=5, 
+        ylabel={$x$ (units of $\hbar^2/mg_c$)},
+        yticklabel pos=right,
+        y label style={yshift=-.5em}
+        ]
+            \addplot graphics[xmin=0,xmax=18,ymin=-5,ymax=5] {data/fermionization_N3_gMIX2_density.png};
+            \coordinate[below=35pt] (subplot) at (axis cs:0,-5); 
+            \coordinate (origin1) at (axis cs:0,0);
+            \coordinate (origin2) at (axis cs:14.2,\PosThreeD);
+            \node[white,anchor=west] at (axis cs:0,4) {(b) $N=3$};
+            \node[white,anchor=west] at (axis cs:0,-4) {$g_m=2g_c$};
+        \end{axis}
+
+        \begin{axis}[%
+        at={(subplot)},
+        anchor=north west,
+        width=0.5\textwidth, 
+        height=0.25\textwidth, 
+        xmin=-6,
+        xmax=6,
+        xlabel={$x$ (units of $\hbar^2/mg_c$)},
+        ymode=log,
+        ymin=1e-3,
+        ymax=10,
+        yminorticks=true,
+        ytick={1e-3,1e-2,1e-1,1,10},
+        yticklabel pos=right,
+        ylabel={$\rho(x)$ (units of $mg_c/\hbar^2$)}
+        ]
+            \addplot [color=mycolor4,line width=1.0pt] table[x=x,y=rho_sf]{fermionization_N3_gMIX2_gTGramp_densities.dat};
+            \addplot [dash dot,line width=1.0pt,forget plot] table[x=x,y=rho_sf_ana]{fermionization_N3_gMIX2_gTGramp_densities.dat};
+            \addplot [color=mycolor3,line width=1.0pt] table[x=x,y=rho_pin]{fermionization_N3_gMIX2_gTGramp_densities.dat};
+            \addplot [color=mycolor2,line width=1.0pt] table[x=x,y=rho_crit]{fermionization_N3_gMIX2_gTGramp_densities.dat};
+            \coordinate (dest1) at (axis cs:0,\PeakSFThreeD);
+            \coordinate (dest2) at (axis cs:\PosThreeD,\PeakCritThreeD);
+            \node at (axis cs: -5.25,3) {(d)};
+        \end{axis}
+
+        \draw[thick,dotted,gray] (origin1) -- (dest1);
+        \draw[thick,dotted,gray] (origin2) -- (dest2);
+    \end{scope}
+\end{tikzpicture} 

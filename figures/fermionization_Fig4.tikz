@@ -1,0 +1,36 @@
+\begin{tikzpicture}
+    \begin{groupplot}[group style = {group size=2 by 1, horizontal sep=18pt}, 
+    width=0.5\textwidth, 
+    height=0.309\textwidth, 
+    enlargelimits=false,
+    axis on top,
+    xlabel={$g$ (units of $g_c$)},
+    ymin=-5,
+    ymax=5,
+    ytick = {-5,-2.5,0,2.5,5},
+    ylabel={$g_m$ (units of $g_c$)},
+    colorbar horizontal,
+    colormap name = bone,
+    colorbar style={at={(0,1.4)},anchor=north west}
+    ]
+        \nextgroupplot[point meta min = 0.5, point meta max = 1, y label style={yshift=-.75em},xmin=0,xmax=100]
+            \addplot graphics[xmin=0,xmax=100,ymin=-5,ymax=5] {data/fermionization_N2_phasediag.png};
+            \node[white] at (axis cs:85,3.75) {pin}; 
+            \node[white] at (axis cs:85,-3.75) {pin}; 
+            \node at (axis cs:5,4) {sf}; 
+            \node at (axis cs:5,-4) {sf}; 
+            \node[white] at (axis cs:50,0) {(a) $N=2$};
+            \addplot [dashed,line width=0.5pt,domain=0:100,samples=100] {sqrt(x)};
+            \addplot [dashed,line width=0.5pt,domain=0:100,samples=100] {-sqrt(x)};
+
+        \nextgroupplot[point meta min = 0.33, point meta max = 1,yticklabel pos=right,y label style={yshift=.75em},colorbar style={xtick={0.33,0.5,0.6,0.7,0.8,0.9,1}},xmin=0,xmax=40]
+            \addplot graphics[xmin=0,xmax=40,ymin=-5,ymax=5] {data/fermionization_N3_phasediag.png};
+            \node[white] at (axis cs:32,3.75) {pin}; 
+            \node[white] at (axis cs:32,-3.75) {pin}; 
+            \node at (axis cs:5,4) {sf}; 
+            \node at (axis cs:5,-4) {sf};
+            \node[white] at (axis cs:20,0) {(b) $N=3$};
+            \addplot [dashed,line width=0.5pt,domain=0:100,samples=100] {sqrt(x)};
+            \addplot [dashed,line width=0.5pt,domain=0:100,samples=100] {-sqrt(x)};
+    \end{groupplot}
+\end{tikzpicture} 
